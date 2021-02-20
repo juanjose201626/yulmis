@@ -1,0 +1,256 @@
+/* @import url(https://fonts.googleapis.com/css?family=Righteous);
+@import url(https://fonts.googleapis.com/css?family=Cutive+Mono); */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+  box-sizing: border-box;
+}
+
+html * {
+  box-sizing: inherit;
+}
+
+*:before,
+*:after {
+  content: " ";
+}
+
+body {
+  overflow: hidden;
+  background-color: #456ddd;
+  perspective: 1000px;
+  color: #fff;
+  font-family: "Cutive Mono", sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+.card {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -175px;
+  width: 350px;
+  height: 470px;
+  transform-style: preserve-3d;
+  transition: all ease-in-out 1s;
+}
+
+.card .page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+  /* border: 2px solid red; */
+  border-radius: 5px;
+  backface-visibility: visible;
+}
+
+.card .cover {
+  z-index: 2;
+  transform: rotateY(-20deg);
+  transition: transform ease-in-out 1.4s;
+  z-index: 5;
+}
+
+.card .cover .content,.card .cover .content-two  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(69.jpg);
+  /*color de la tarjeta*/
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 3;
+}
+
+.card .cover:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: right bottom;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: skew(-8deg) rotateX(-10deg);
+  z-index: -1;
+}
+
+.card .cover button {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background: transparent;
+  border: 5px groove white;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  background: #e73827;
+  padding: 0.5em 1.4em;
+}
+
+.card .cover button:focus {
+  outline: none;
+}
+
+.card .inside {
+  z-index: 1;
+  transform: rotateY(-8deg);
+}
+
+.card .inside .content,.card .inside .content-two {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(fondo3.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 3;
+  background-color: #525151;
+  background-blend-mode: hard-light;
+}
+
+.card .inside:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: right bottom;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: skew(-8deg) rotateX(-10deg);
+  z-index: -1;
+}
+
+.card.open {
+  margin-left: 0;
+}
+
+.card.open .cover {
+  transform: rotateY(-175deg);
+}
+
+.t-text {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  color: #fbfbfb;
+  font-size: 30px;
+  text-shadow: 4px 5px 10px rgb(29, 209, 209);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card .t-mensaje{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fbfbfb;
+  font-size: 19px;
+  text-shadow: 4px 5px 10px rgb(29, 209, 209);
+  padding: 20px;
+  transform: rotateY(180deg);
+  border: 1px solid white;
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: #000000ba;
+  border-radius: 20px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity .9s ease-out;
+}
+
+.card.open .t-mensaje{
+  /* display: block; */
+  opacity: 1;
+}
+
+.card .t-para, .card.open button{
+  transition: opacity .9s ease-out;
+}
+.card.open .t-para, .card.open button{
+  opacity: 0;
+}
+
+
+@keyframes titulo-zoom{
+  /* 00% { transform: scale(1); } */
+  25% { color: blue;}
+  50% { color: yellow;}
+  75% { color: red;}
+  100% { transform: scale(1.2); color: red;}
+}
+
+.b-text {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  color: blue;
+  font-size: 30px;
+  text-shadow: 5px 4px 5px red;
+}
+
+.hb {
+  margin-top: 150px;
+  background: radial-gradient(top, ellipse cover, #f85096 0%, #2ea9be 25%, #267cf0 60%, #e73827 100%);
+  display: inline-block;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: "Righteous", sans-serif;
+  font-size: 45px;
+  font-weight: 700px;
+  position: relative;
+}
+
+.hb::after,
+.hb::before {
+  content: attr(data-title);
+  text-shadow: 8px -8px 0px #27292a;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: depth 6s -1s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+  animation: depth 6s -1s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+
+.hb::after {
+  background: radial-gradient(top, ellipse cover, #f86464 0%, #0affc8 25%, #ee7cfa 60%, #faa61d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translate3d(0px, 16px, 0px) scale(0.9);
+  z-index: -1;
+  display: none;
+}
+
+.hb::before {
+  background: linear-gradient(top, #375db1 0%, #fdfb00 30%, #ef017c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translate3d(0px, 32px, 0px) scale(0.8);
+  z-index: -2;
+  color: red;
+}
+
+@-webkit-keyframes depth {
+  50% {
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
+
+@keyframes depth {
+  50% {
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
